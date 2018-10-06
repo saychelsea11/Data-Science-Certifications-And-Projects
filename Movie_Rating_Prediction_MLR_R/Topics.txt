@@ -1,0 +1,10 @@
+Multiple Linear Regression
+Prediction
+R
+Model Diagnostics
+Feature Selection
+Modeling
+Exploratory Data Analysis
+Predictive Analytics
+ANOVA
+
