@@ -2,9 +2,9 @@
 
 ## Contents
 
-- Data: Consists of 2 files. The first one is a CSV file which contains a table for comparing LDA coherence scores across model parameters. The second file is a text file which contains a link to the dataset. Since the complete dataset is over 400MB, it could not be added to Github as the limit is 100MB. 
-- Notebooks:
-- Reports: 
+- **Data**: Consists of 2 files. The first one is a CSV file which contains a table for comparing LDA coherence scores across model parameters. The second file is a text file which contains a link to the dataset. Since the complete dataset is over 400MB, it could not be added to Github as the limit is 100MB. 
+- **Notebooks**:
+- **Reports**: 
 
 ## Goal
 
