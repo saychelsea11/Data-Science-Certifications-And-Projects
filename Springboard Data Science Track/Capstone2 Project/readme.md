@@ -14,12 +14,12 @@
 
 # Contents
 
-- ###Data: Consists of 2 files:
+### Data: Consists of 2 files:
 
 1. **topics_keeps_vs_coherence.csv**: CSV file which contains a table for comparing LDA coherence scores across model parameters. 
 2. **dataset_link.txt**: Text file which contains a link to the dataset. Since the complete dataset is over 400MB, it could not be added to Github as the limit is 100MB. 
 
-- ##Notebooks: There are a total of 6 Python Jupyter Notebooks in the following order: 
+### Notebooks: There are a total of 6 Python Jupyter Notebooks in the following order: 
 
 1. **stack_exchange_text_data_wrangling_initial_cleaning.ipynb** - Performs intial cleaning by removing HTML tags from the text as well as removing newline characters. 
 2. **word_tokenization_stopword_removal_tokenization.ipynb** - Tokenizes the text data, changes text to lowercase and performs stopwords removal in an iterative manner. Also performs lemmatization which is a key feature engineering step for text data. 
@@ -28,7 +28,7 @@
 5. **prediction_and_evluation.ipynb**	- Final model is used to predict topics for train and test (unseen) documents and the results evaluated using tables and visualizations. 
 6. **lda_word2vec_gensim.ipynb** - Additional notebook which explores *word2vec* which finds word similarities within the corpus by looking at the contexts in which particular words occur in the text. 
 
-- ##Reports: Contains 2 main reports: 
+### Reports: Contains 2 main reports: 
 
 1. **Capstone2_Final_Report**: Detailed final report covering the goal of the project, the business problem, cleaning techniques, EDA and modeling. 
 2. **Stack_Exchange_Topic_Modeling_Presentation**: Concise report in the form of slides. Provides a good overview of the project. 
