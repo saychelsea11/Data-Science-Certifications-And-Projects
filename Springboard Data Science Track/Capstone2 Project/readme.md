@@ -16,8 +16,8 @@
 
 - **Data**: Consists of 2 files:
 
-1. The first one is a CSV file which contains a table for comparing LDA coherence scores across model parameters. 
-2. The second file is a text file which contains a link to the dataset. Since the complete dataset is over 400MB, it could not be added to Github as the limit is 100MB. 
+1. *topics_keeps_vs_coherence.csv*: CSV file which contains a table for comparing LDA coherence scores across model parameters. 
+2. *dataset_link.txt*: Text file which contains a link to the dataset. Since the complete dataset is over 400MB, it could not be added to Github as the limit is 100MB. 
 
 - **Notebooks**: There are a total of 6 Python Jupyter Notebooks in the following order: 
 
