@@ -1,6 +1,6 @@
 ## Project title
 
-**Identifying keywords and topics from questions on Stack Exchange sites**
+*Identifying keywords and topics from questions on Stack Exchange sites*
 
 ## Goal
 
