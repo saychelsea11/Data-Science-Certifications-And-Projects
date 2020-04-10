@@ -14,15 +14,8 @@
 
 # Contents
 
-### Data: Consists of 2 files:
+1. **Data**: Consists of a link to the actual dataset. 
 
-1. **topics_keeps_vs_coherence.csv**: CSV file which contains a table for comparing LDA coherence scores across model parameters. 
-2. **dataset_link.txt**: Text file which contains a link to the dataset. Since the complete dataset is over 400MB, it could not be added to Github as the limit is 100MB. 
+2. **Notebooks**: Contains the Python Jupyter Notebooks used for cleaning, analysis and modeling. More details regarding the notebooks are in the directory itself.  
 
-### Notebooks: There are a total of 6 Python Jupyter Notebooks used for cleaning, EDA and modeling. 
-
-### Reports: Contains 2 main reports: 
-
-1. **Capstone2_Final_Report**: Detailed final report covering the goal of the project, the business problem, cleaning techniques, EDA and modeling. 
-2. **Stack_Exchange_Topic_Modeling_Presentation**: Concise report in the form of slides. Provides a good overview of the project. 
-
+3. **Reports**: Contains all the documentation for the project including a detailed report and presentation slides. 
