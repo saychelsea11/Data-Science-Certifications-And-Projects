@@ -14,10 +14,10 @@
 
 # Contents
 
-### Data: Consists of a text file which contains a link to the dataset as the data itself was too large to directly include in Github. The text file is called *Link_to_dataset.txt*.
+1. **Data**: Consists of a text file which contains a link to the dataset as the data itself was too large to directly include in Github. The text file is called *Link_to_dataset.txt*.
 
-### Images: Contains some of the images used in the presentation slides for this project. 
+2. **Images**: Contains some of the images used in the presentation slides for this project. 
 
-### Notebooks: Contains the Python Jupyter Notebooks used for cleaning, analysis and modeling. More details regarding the notebooks are in the directory itself.  
+3. **Notebooks**: Contains the Python Jupyter Notebooks used for cleaning, analysis and modeling. More details regarding the notebooks are in the directory itself.  
 
-### Reports: Contains all the documentation for the project including a detailed report and presentation slides. 
+4. **Reports**: Contains all the documentation for the project including a detailed report and presentation slides. 
