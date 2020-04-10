@@ -1,4 +1,4 @@
-Each notebook contains text that guides the code and analysis. Here is an overview of the notebooks: 
+# Jupyter notebook descriptions
 
 1. **Cleaning_and_wrangling_Seattle_collision_data.ipynb**: This is the first notebook in chronological order. It takes in the initial dataset and goes through several cleaning steps. Some variables are ommitted right at the beginning as they didn't provide much insight for analysis or modeling purposes. Following that, the columns are renamed and missing values are handled following by some outlier analysis. 
 
