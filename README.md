@@ -1,4 +1,4 @@
-#### This is my (Sayan Das) data science repository containing numerous projects across a wide range of data science topics. The contents are split into specific specializations and categories. There are 4 specializations and a few individual projects. Here is a breakdown: 
+### This is my (Sayan Das) data science repository containing numerous projects across a wide range of data science topics. The contents are split into specific specializations and categories. There are 4 specializations and a few individual projects. Here is a breakdown: 
 
 # Certifications/Specializations
 
