@@ -1,1 +1,0 @@
-## This folder contains 2 Capstone projects, 2 take home challenges and several mini-projects covering a wide range of data science topics. Most of the tasks are done using Jupyter Notebooks in Python.  
