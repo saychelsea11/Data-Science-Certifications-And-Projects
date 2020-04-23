@@ -2,6 +2,10 @@
 
 *Analyzing collision events in Seattle and predicting severe occurrences*
 
+# Blog post
+
+http://thecraftofdata.com/2020/01/analyzing-collision-events-in-seattle-and-predicting-severe-occurrences
+
 # Goal
 
 - Reduce the number of severe collisions in the US and specifically in Seattle. 
