@@ -1,4 +1,17 @@
-### This is my (Sayan Das) data science repository containing numerous projects across a wide range of data science topics. The contents are split into specific specializations and categories. There are 4 specializations and a few individual projects. Here is a breakdown: 
+### This is my (Sayan Das) data science repository containing numerous projects across a wide range of data science topics. 
+
+# Most recent projects
+
+1. Identifying keywords and topics from questions on Stack Exchange websites using topic modeling and other NLP techniques. 
+   https://github.com/saychelsea11/Data-Science-Projects/tree/master/Springboard%20Data%20Science%20Bootcamp/Capstone2%20Project
+   
+2. Analyzing motor vehicle collisions in Seattle and predicting severe occurrences using binary classification. 
+   https://github.com/saychelsea11/Data-Science-Projects/tree/master/Springboard%20Data%20Science%20Bootcamp/Capstone1%20Project
+   
+3. Determining an ideal location from 161 neighborhoods for opening a retail store in Atlanta using clustering. 
+   https://github.com/saychelsea11/Data-Science-Projects/tree/master/IBM%20Data%20Science%20Professional%20Certificate/Capstone_Project_Atlanta_Neighborhoods_Clustering_For_Retail_Store
+
+### The contents are split into specific specializations and categories. There are 4 specializations and a few individual projects. Here is a breakdown: 
 
 # Certifications/Specializations
 
