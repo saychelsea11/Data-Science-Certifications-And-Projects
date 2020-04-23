@@ -27,8 +27,8 @@
 
 # Individual Projects:
 
-1. **Predicting Housing Prices In Ames, Iowa (Kaggle)**: Linear regression problem to predict housing prices given various features of houses in Ames, Iowa. The main evaluation metric was log mean squared error. 
+1. **Analyzing Asian Enrollment at Harvard Univerisity**: Invidual project exploring Harvard's admissions process following the recent controvery regarding the enrollment of Asian students at the school.
 
-2. **Cuisine Prediction (Kaggle)**: Predicting cuisines from a dataset of ingredients. Each row of the dataset contained the ingredients as text data and the cuisine as the target variable to be predicted. 
+2. **Predicting Housing Prices In Ames, Iowa (Kaggle)**: Linear regression problem to predict housing prices given various features of houses in Ames, Iowa. The main evaluation metric was log mean squared error. 
 
-3. **Analyzing Asian Enrollment at Harvard Univerisity**: Invidual project exploring Harvard's admissions process following the recent controvery regarding the enrollment of Asian students at the school. 
+3. **Cuisine Prediction (Kaggle)**: Predicting cuisines from a dataset of ingredients. Each row of the dataset contained the ingredients as text data and the cuisine as the target variable to be predicted.  
