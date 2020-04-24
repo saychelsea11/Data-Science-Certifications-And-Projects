@@ -6,8 +6,8 @@
 
 1. **Springboard Data Science Bootcamp**: Data science bootcamp covering 600+ hours of curriculum, assignments and projects. Contains 2 capstone projects involving practical business problems using real-world data. 
 
-   a. [Capstone 1](https://github.com/saychelsea11/Data-Science-Projects/tree/master/Springboard%20Data%20Science%20Bootcamp/Capstone1%20Project)
-   b. [Capstone 2](https://github.com/saychelsea11/Data-Science-Projects/tree/master/Springboard%20Data%20Science%20Bootcamp/Capstone2%20Project)
+a. [Capstone 1](https://github.com/saychelsea11/Data-Science-Projects/tree/master/Springboard%20Data%20Science%20Bootcamp/Capstone1%20Project)
+b. [Capstone 2](https://github.com/saychelsea11/Data-Science-Projects/tree/master/Springboard%20Data%20Science%20Bootcamp/Capstone2%20Project)
 
 2. **IBM Data Science Professional Ceritificate**: Data science certification covering a broad range of topics and skills spanning 9 courses and a capstone project. Covers the entire data science workflow with special emphasis on each aspect such as business problem formulation, data cleaning, data exploration and modeling. 
 
