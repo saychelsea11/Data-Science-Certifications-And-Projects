@@ -6,13 +6,13 @@
 
 1. **Springboard Data Science Bootcamp**: Data science bootcamp covering 600+ hours of curriculum, assignments and projects. Contains 2 capstone projects involving practical business problems using real-world data. 
 
-            - [Capstone 1 project](https://github.com/saychelsea11/Data-Science-Projects/tree/master/Springboard%20Data%20Science%20Bootcamp/Capstone1%20Project)
+            a. [Capstone 1 project](https://github.com/saychelsea11/Data-Science-Projects/tree/master/Springboard%20Data%20Science%20Bootcamp/Capstone1%20Project)
 
-            - [Capstone 2 project](https://github.com/saychelsea11/Data-Science-Projects/tree/master/Springboard%20Data%20Science%20Bootcamp/Capstone2%20Project)
+            b. [Capstone 2 project](https://github.com/saychelsea11/Data-Science-Projects/tree/master/Springboard%20Data%20Science%20Bootcamp/Capstone2%20Project)
 
 2. **IBM Data Science Professional Ceritificate**: Data science certification covering a broad range of topics and skills spanning 9 courses and a capstone project. Covers the entire data science workflow with special emphasis on each aspect such as business problem formulation, data cleaning, data exploration and modeling. 
 
-            - [Capstone project](https://github.com/saychelsea11/Data-Science-Projects/tree/master/IBM%20Data%20Science%20Professional%20Certificate/Capstone_Project_Atlanta_Neighborhoods_Clustering_For_Retail_Store)
+            a. [Capstone project](https://github.com/saychelsea11/Data-Science-Projects/tree/master/IBM%20Data%20Science%20Professional%20Certificate/Capstone_Project_Atlanta_Neighborhoods_Clustering_For_Retail_Store)
 
 3. **Applied Data Science With Python**: Intensive data science certification with a heavy focus on Python and the Pandas library. Covers 5 courses (data wrangling, data visualization, text mining, machine learning, network analysis) with in-depth assignment and mini-projects culminating in a capstone project at the end. 
 
