@@ -1,4 +1,4 @@
-### This is my (Sayan Das) data science repository containing numerous projects across a wide range of data science topics. 
+## This is my (Sayan Das) data science repository containing numerous projects across a wide range of data science topics. 
 
 # (Skip to) Most recent projects
 
@@ -11,7 +11,7 @@
 3. Determining an ideal location from 161 neighborhoods for opening a retail store in Atlanta using clustering. 
    https://github.com/saychelsea11/Data-Science-Projects/tree/master/IBM%20Data%20Science%20Professional%20Certificate/Capstone_Project_Atlanta_Neighborhoods_Clustering_For_Retail_Store
 
-### The contents are split into specific specializations and categories. There are 5 specializations and a few individual projects. Here is a breakdown of each category in chronological order: 
+## The contents are split into specific specializations and categories. There are 5 specializations and a few individual projects. Here is a breakdown of each category in chronological order: 
 
 # Certifications/Specializations
 
