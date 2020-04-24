@@ -14,7 +14,7 @@
 
 5. **Python For Everybody Specialization**: Introductory Python certification consisting of 5 courses covering topics such as data structures, conditional statements, iteration, APIs, SQL, web crawling etc. 
 
-# Individual Projects:
+# Individual Projects
 
 1. **Analyzing Asian Enrollment at Harvard Univerisity**: Invidual project exploring Harvard's admissions process following the recent controvery regarding the enrollment of Asian students at the school.
 
