@@ -1,4 +1,4 @@
-#### This is my (Sayan Das) data science repository containing numerous projects across a wide range of data science topics. You can either explore the hierarchy of certifications and individual projects in chronological order or just skip to the most recent projects. 
+#### This is my (Sayan Das) data science repository containing numerous projects across a wide range of data science topics. You can either explore the hierarchy of certifications and individual projects in chronological order or just skip to the most recent projects within the directory.  
 
 #### The contents are split into 5 specializations and a few individual projects. Each specialization also has projects within. Here is a breakdown of each category in chronological order: 
 
