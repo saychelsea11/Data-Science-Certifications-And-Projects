@@ -1,6 +1,8 @@
-#### This is my (Sayan Das) data science repository containing numerous projects across a wide range of data science topics. 
+#### This is my (Sayan Das) data science repository containing numerous projects across a wide range of data science topics. You can:
+a. Skip to the most recent projects **OR**
+b. Explore the hierarchy of certifications and individual projects in hierarchical order. 
 
-# (Skip to) Most recent projects
+# a. Most recent projects
 
 1. Identifying keywords and topics from questions on Stack Exchange websites using topic modeling and other NLP techniques. 
    https://github.com/saychelsea11/Data-Science-Projects/tree/master/Springboard%20Data%20Science%20Bootcamp/Capstone2%20Project
@@ -13,7 +15,7 @@
 
 #### The contents are split into specific specializations and categories. There are 5 specializations and a few individual projects. Here is a breakdown of each category in chronological order: 
 
-# Certifications/Specializations
+# b. Certifications/Specializations
 
 1. **Springboard Data Science Bootcamp**: Data science bootcamp covering 600+ hours of curriculum, assignments and projects. Contains 2 capstone projects involving practical business problems using real-world data. 
 
