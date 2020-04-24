@@ -1,21 +1,8 @@
-#### This is my (Sayan Das) data science repository containing numerous projects across a wide range of data science topics. You can:
-a. Skip to the most recent projects **OR**
-b. Explore the hierarchy of certifications and individual projects in hierarchical order. 
+#### This is my (Sayan Das) data science repository containing numerous projects across a wide range of data science topics. You can either explore the hierarchy of certifications and individual projects in chronological order or just skip to the most recent projects. 
 
-# a. Most recent projects
+#### The contents are split into 5 specializations and a few individual projects. Each specialization also has projects within. Here is a breakdown of each category in chronological order: 
 
-1. Identifying keywords and topics from questions on Stack Exchange websites using topic modeling and other NLP techniques. 
-   https://github.com/saychelsea11/Data-Science-Projects/tree/master/Springboard%20Data%20Science%20Bootcamp/Capstone2%20Project
-   
-2. Analyzing motor vehicle collisions in Seattle and predicting severe occurrences using binary classification. 
-   https://github.com/saychelsea11/Data-Science-Projects/tree/master/Springboard%20Data%20Science%20Bootcamp/Capstone1%20Project
-   
-3. Determining an ideal location from 161 neighborhoods for opening a retail store in Atlanta using clustering. 
-   https://github.com/saychelsea11/Data-Science-Projects/tree/master/IBM%20Data%20Science%20Professional%20Certificate/Capstone_Project_Atlanta_Neighborhoods_Clustering_For_Retail_Store
-
-#### The contents are split into specific specializations and categories. There are 5 specializations and a few individual projects. Here is a breakdown of each category in chronological order: 
-
-# b. Certifications/Specializations
+# Certifications/Specializations
 
 1. **Springboard Data Science Bootcamp**: Data science bootcamp covering 600+ hours of curriculum, assignments and projects. Contains 2 capstone projects involving practical business problems using real-world data. 
 
@@ -34,3 +21,14 @@ b. Explore the hierarchy of certifications and individual projects in hierarchic
 2. **Predicting Housing Prices In Ames, Iowa (Kaggle)**: Linear regression problem to predict housing prices given various features of houses in Ames, Iowa. The main evaluation metric was log mean squared error. 
 
 3. **Cuisine Prediction (Kaggle)**: Predicting cuisines from a dataset of ingredients. Each row of the dataset contained the ingredients as text data and the cuisine as the target variable to be predicted.  
+
+# Most recent projects
+
+1. Identifying keywords and topics from questions on Stack Exchange websites using topic modeling and other NLP techniques. 
+   https://github.com/saychelsea11/Data-Science-Projects/tree/master/Springboard%20Data%20Science%20Bootcamp/Capstone2%20Project
+   
+2. Analyzing motor vehicle collisions in Seattle and predicting severe occurrences using binary classification. 
+   https://github.com/saychelsea11/Data-Science-Projects/tree/master/Springboard%20Data%20Science%20Bootcamp/Capstone1%20Project
+   
+3. Determining an ideal location from 161 neighborhoods for opening a retail store in Atlanta using clustering. 
+   https://github.com/saychelsea11/Data-Science-Projects/tree/master/IBM%20Data%20Science%20Professional%20Certificate/Capstone_Project_Atlanta_Neighborhoods_Clustering_For_Retail_Store
