@@ -15,7 +15,7 @@
 
 # Certifications/Specializations
 
-1. **Springboard Data Science Track**: Data science bootcamp covering 600+ hours of curriculum, assignments and projects. Contains 2 capstone projects involving practical business problems using real-world data. 
+1. **Springboard Data Science Bootcamp**: Data science bootcamp covering 600+ hours of curriculum, assignments and projects. Contains 2 capstone projects involving practical business problems using real-world data. 
 
 2. **IBM Data Science Professional Ceritificate**: Data science certification covering a broad range of topics and skills spanning 9 courses and a capstone project. Covers the entire data science workflow with special emphasis on each aspect such as business problem formulation, data cleaning, data exploration and modeling. 
 
