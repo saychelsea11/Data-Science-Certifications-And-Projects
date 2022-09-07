@@ -1,7 +1,0 @@
-Statistical Inference
-Confidence Intervals
-Hypothesis Testing
-ANOVA
-Descriptive Analytics
-P-value
-Exploratory Data Analysis

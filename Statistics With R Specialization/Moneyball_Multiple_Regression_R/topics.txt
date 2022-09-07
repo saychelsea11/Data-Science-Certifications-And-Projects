@@ -1,6 +1,0 @@
-Multiple Linear Regression
-Feature Selection
-Prediction
-Predictive Analytics
-Exploratory Data Analysis
-Modeling

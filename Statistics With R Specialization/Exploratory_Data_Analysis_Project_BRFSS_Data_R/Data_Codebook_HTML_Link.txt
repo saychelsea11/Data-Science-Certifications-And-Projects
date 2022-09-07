@@ -1,1 +1,0 @@
-https://rawgit.com/saychelsea11/Data-Science-Projects/master/Exploratory_Data_Analysis_Project_BRFSS_Data_R/Exploratory_Data_Analysis_BRFSS_Data_Codebook.html

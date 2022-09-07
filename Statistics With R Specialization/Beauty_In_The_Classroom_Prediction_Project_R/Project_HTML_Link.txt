@@ -1,1 +1,0 @@
-https://rawgit.com/saychelsea11/Data-Science-Projects/master/Beauty_In_The_Classroom_Prediction_Project_R/Multiple_Linear_Regression_Lab.html

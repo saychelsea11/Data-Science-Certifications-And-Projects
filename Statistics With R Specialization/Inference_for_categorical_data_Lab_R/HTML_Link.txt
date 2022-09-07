@@ -1,1 +1,0 @@
-https://rawgit.com/saychelsea11/Data-Science-Projects/master/Inference_for_categorical_data_Lab_R/Inference_For_Categorical_Data.html
