@@ -1,0 +1,521 @@
+---
+title: "Modeling and prediction for movies"
+output: 
+  html_document: 
+    fig_height: 4
+    highlight: pygments
+    theme: spacelab
+---
+
+## Setup
+
+### Load packages
+
+```{r load-packages, message = FALSE}
+library(ggplot2)
+library(dplyr)
+library(statsr)
+library(GGally)
+```
+
+### Load data
+
+```{r load-data}
+load("movies.Rdata")
+```
+
+* * *
+
+## Part 1: Data
+
+The data consists of 651 randomly sampled movies produced and released after 2016. Hence, the population in question here is all movies released after 2016. 
+
+Generalizabilty: Since random selection was used to sample the data, the results can be generizable to a population of all movies made after 2016. 
+
+Causality: No conclusions regarding causality can be made with the results since this is an observational study and not an experimental one. Since random assignment was not used, we cannot make any assumptions on causality. 
+
+It is difficult to point towards any sources of bias since the movies in the dataset are randomly selected. The only bias that could be in play might be convenience bias if the movies picked were in a particular order or from a particular category such as the same year or the same director. Although, this is highly unlikely. 
+
+* * *
+
+## Part 2: Research question
+
+Question: What are the factors that contribute towards a high movie rating on IMDB? Also, which is the most significant contributor? 
+
+The response variable in the research question is going to be "imdb_rating" and the other variables are going to be analyzed to determine whether it would make sense to include them in the multiple regression model. 
+
+This question is of specific importance to me since often, the deciding factor for me in selecting a movie to watch is it's IMDB score. Since I do not tend to follow Rotten Tomatoes, it would be interesting to see if the scores on the two platforms have an association. This study could also provide an insight into the voting patterns of the general audience as well when it comes to movie ratings. It would be interesting to see the relation between audience and critics ratings, and awards related factors. 
+
+* * *
+
+## Part 3: Exploratory data analysis
+
+###Selecting the variables for analysis
+
+There are only certain variables that are justified to be considered in the model. For example, variables such as "best_pic_nom" (If the movie was nominated for best picture at the Oscars) or "audience_rating" (Audience's movie rating on Rotten Tomatoes) make sense since those are variables that could correlate with the IMDB movie rating. Other variables such as "rt_url" (Rotten Tomatoes URL for the movie) or "title" (Movie title) will likely not provide any useful insight into the data. 
+
+The variables that we will consider are listed below:
+
+- genre: Genre of movie (Action & Adventure, Comedy, Documentary, Drama, Horror, Mystery &       Suspense, Other)
+- runtime: Runtime of movie (in minutes)
+- mpaa_rating: MPAA rating of the movie (G, PG, PG-13, R, Unrated)
+- imdb_rating: Rating on IMDB
+- imdb_num_votes: Number of votes on IMDB
+- critics_score: Critics score on Rotten Tomatoes
+- audience_score: Audience score on Rotten Tomatoes
+- best_pic_nom: Whether or not the movie was nominated for a best picture Oscar (no, yes)
+- best_pic_win: Whether or not the movie won a best picture Oscar (no, yes)
+- best_actor_win: Whether or not one of the main actors in the movie ever won an Oscar (no,      yes) - note that this is not necessarily whether the actor won an Oscar for their role in the   given movie
+- best_actress win: Whether or not one of the main actresses in the movie ever won an Oscar      (no, yes) - not that this is not necessarily whether the actresses won an Oscar for their      role in the given movie
+- best_dir_win: Whether or not the director of the movie ever won an Oscar (no, yes) - not that   this is not necessarily whether the director won an Oscar for the given movie
+- top200_box: Whether or not the movie is in the Top 200 Box Office list on BoxOfficeMojo (no,   yes)
+- critics_rating: Categorical variable for critics rating on Rotten Tomatoes (Certified Fresh,   Fresh, Rotten)
+- audience_rating: Categorical variable for audience rating on Rotten Tomatoes (Spilled,         Upright)
+- dvd_rel_month: Month the movie is released on DVD
+- thtr_rel_month: Month the movie is released in theaters
+
+Creating a new dataframe containing just the variables of interest as listed above. 
+
+```{r}
+movies_new <- movies %>%
+  select(imdb_rating,imdb_num_votes,critics_score, critics_rating, audience_score, audience_rating, best_pic_nom,best_pic_win,best_actor_win,best_actress_win,best_dir_win,top200_box,mpaa_rating,runtime, dvd_rel_month, thtr_rel_month)
+```
+
+Creating a separate dataframe containing just the numerical variables.
+
+```{r}
+movies_num <- movies %>%
+  select(imdb_rating, imdb_num_votes, critics_score, audience_score, runtime) %>%
+  filter(!(is.na(imdb_rating)),!(is.na(imdb_num_votes)),!(is.na(critics_score)),!(is.na(audience_score)),!(is.na(runtime)))
+```
+
+
+###Numerical Data Analysis
+
+A correlation matrix with the entire dataset would be barely readable due to the massive number of variables and is therefore, not the most efficient way to determine collinearity between variables or each variable's association with our response variable which is "imdb_rating". 
+
+However, we can create a correlation matrix with just the numerical variables which are included in the "movies_num" dataframe. This would provide us with both the scatter plot between each variable as well as the correlation value. 
+
+```{r bty-rels, fig.width = 12, fig.height= 5}
+ggpairs(movies_num)
+```
+
+
+Looking at the above correlation matrix, just two variables - "audience_score" and "critics_score" have a strong correlation with "imdb_score". Although, since the two variables themselves correlate with one another, they are collinear with each other which means that having both variables in the model will not improve the model in any way. 
+
+Even though the number of votes variable seems to show a greater number of votes for higher ratings, the relationship is not linear and the variability is rather large. 
+
+Runtime also does not appear to be linearly associated with "imdb_ratings" even though there is a slight increase in runtime at higher ratings. 
+
+Lets take a closer look at "critics_score" and "audience_score". 
+
+
+```{r}
+ggplot(data=movies_new,aes(x=audience_score,y=imdb_rating)) +geom_jitter() +geom_smooth(method = "lm", se=FALSE)
+```
+
+The scatter plot above shows a linear, moderate and positive association between "imdb_rating" and "audience_score". Although, the trend is a little bit fan-shaped due to the high variance at lower audience scores as compared to higher ones. 
+
+```{r}
+ggplot(data=movies_new,aes(x=critics_score,y=imdb_rating)) +geom_jitter() +geom_smooth(method = "lm", se=FALSE)
+```
+
+The above plot shows a moderate, linear and positive relationship with a fairly constant variance. 
+
+###Categorical Data Analysis
+
+We now compare each of the remaining (categorical) variables with "imdb_rating". 
+
+```{r}
+ggplot(data=movies_new,aes(x=critics_rating,y=imdb_rating)) +geom_boxplot()
+
+```
+
+The above boxplot shows the comparison between the "imdb_rating" and the "critics_rating". This comparison could not be shown as a scatterplot since the rating variable is a categorical one. 
+
+However, a clear association can still be observed from the plot as better rated movies by critics tend to correlate with higher ratings on IMDB. 
+
+The distribution of the critics rating is shown using the code below where almost half the movies are given a "Rotten" rating while only 20.73% of the movies are given a "Fresh" rating.
+
+```{r}
+movies_new %>% 
+  group_by(critics_rating) %>%
+  summarise(n())
+
+ggplot(data=movies_new,aes(x=critics_rating)) + geom_bar()
+```
+
+Also, it is interesting to note that majority of the "Fresh" rated movies fall above the 7 rating on IMDB from the boxplot. 
+
+```{r}
+movies_new %>% 
+  filter(imdb_rating > 7) %>%
+  group_by(critics_rating) %>%
+  summarise(n())
+```
+```{r}
+movies_new %>% 
+  filter(imdb_rating < 6) %>%
+  group_by(critics_rating) %>%
+  summarise(n())
+```
+
+The above two summaries show the distribution of critics ratings for IMDB ratings above 7 and below 6 providing more insight into the relation between the two variables. 
+
+```{r}
+ggplot(data=movies_new,aes(x=audience_rating,y=imdb_rating)) +geom_boxplot()
+```
+
+The audience rating shows a similar relation with the IMDB ratings as with the critics variable. Better rated movies by audiences on Rotten Tomatoes seem to positively correlate with the IMDB ratings. 
+
+```{r}
+movies_new %>% 
+  group_by(audience_rating) %>%
+  summarise(n())
+
+movies_new %>% 
+  filter(imdb_rating < 6) %>%
+  group_by(audience_rating) %>%
+  summarise(n())
+
+movies_new %>% 
+  filter(imdb_rating > 7) %>%
+  group_by(audience_rating) %>%
+  summarise(n())
+```
+
+In the summaries above, 57.75% of the movies are given a positive review by the audience in slight contrast to the critics ratings. This shows that the critics are harsher with their ratings, which is expected. 
+
+When comparing with IMDB ratings below 6, a massive 91.11% of the audience gave negative reviews while 99.55% of the audience gave positive review to movies with an IMDB rating above 7. 
+
+These distributions differ in comparison to the critics ratings in that the audience seem to have an almost unanimous agreement regarding the merit of the film when compared to the IMDB ratings. The critics ratings, on the other hand, seem to be less agreeable with the IMDB ratings. One factor that could be contributing to these results is that the audience ratings are categorized into only 2 levels whie the critics ratings are spread across 3 levels. 
+
+The plots below show the relation between the IMDB ratin and whether the movie was nominated for best picture and whether the movie won the award respectively. As expected, movies that were nominated or won show a higher overall distribution. 
+
+It will be interesting to see whether these two variables show a high collinearity as that would make including both, redundant. 
+
+```{r}
+ggplot(data=movies_new,aes(x=best_pic_nom,y=imdb_rating)) +geom_boxplot()
+ggplot(data=movies_new,aes(x=best_pic_win,y=imdb_rating)) +geom_boxplot()
+```
+
+The plots below show the respective relations between "best_dir_nom", "best_actor_nom", "best_actress_nom", and "imdb_rating". Even though the best director plot shows a slightly positive association with the IMDB rating, none of these distributions indicate a distinct linear relation to it. 
+
+This is not surprising since each of these explanatory variables only tell us whether the director, actor or actress has ever won an award, not necessarily for the particular movies in this dataset. 
+
+If they had won an award for the corresponding movies in this data, we could expect the below distributions to show a stronger correlation between winning and a higher IMDB rating for the movie. 
+
+```{r}
+ggplot(data=movies_new,aes(x=best_dir_win,y=imdb_rating)) +geom_boxplot()
+ggplot(data=movies_new,aes(x=best_actor_win,y=imdb_rating)) +geom_boxplot()
+ggplot(data=movies_new,aes(x=best_actress_win,y=imdb_rating)) +geom_boxplot()
+```
+
+```{r}
+movies_new %>%
+  filter(imdb_rating > 7) %>%
+  group_by(best_dir_win,best_actor_win,best_actress_win) %>%
+  summarise(n())
+
+movies_new %>%
+  filter(imdb_rating < 6) %>%
+  group_by(best_dir_win,best_actor_win,best_actress_win) %>%
+  summarise(n())
+```
+ 
+The two tables above show a distribution of the three award variables grouped together with again dividing the IMDB ratings into the less than 6 and greater than 7 segments. 
+
+These results do not provide any significant insight into the relations between the variables. Although, one thing to note is that the last two rows, both of which indicate an award winning actress and director, have values for ratings above 7 and do not for ratings below 6. 
+
+```{r}
+ggplot(data=movies_new,aes(x=thtr_rel_month,y=imdb_rating))+geom_jitter()
+ggplot(data=movies_new,aes(x=thtr_rel_month,y=imdb_rating))+geom_jitter()
+```
+
+The two plots above show the scatter plots for "thtr_rel_month" and "dvd_rel_month". From the plots themselves, it is clear that the distribution is random and no linear relationship exists between these two variables and the IMDB rating. 
+
+```{r}
+ggplot(data=movies,aes(x=genre,y=imdb_rating))+geom_boxplot() + theme(axis.text.x = element_text(angle=90,hjust=1))
+ggplot(data=movies,aes(x=mpaa_rating,y=imdb_rating))+geom_boxplot() + theme(axis.text.x = element_text(angle=90,hjust=1))
+```
+
+From the boxplots above containing the distributions of the different genres and MPAA ratings with respect to the IMDB rating, it is not perfectly clear which genres or ratings are significant to the analysis.
+
+Also, there seem to be too many levels for such small differences to make a significant impact on the predictive power of the model. 
+
+```{r}
+ggplot(data=movies,aes(x=top200_box,y=imdb_rating))+geom_boxplot() + theme(axis.text.x = element_text(angle=90,hjust=1))
+```
+
+
+* * *
+
+## Part 4: Modeling
+
+###Variables to omit from the model
+
+Below are the variables and the reasons for their ommissions from the model. 
+
+- title: Unrelated to IMDB rating
+- title_type: Unrelated to IMDB rating
+- studio: Too many studios to provide a single significant contributor
+- thtr_rel_year: Unrelated to IMDB rating
+- thtr_rel_day: Unrelated to IMDB rating
+- dvd_rel_year: Unrelated to IMDB rating
+- dvd_rel_day: Unrelated to IMDB rating
+- director: Too many directors to provide a significant contributor
+- actor1: Too many unique values to provide a significant contributor
+- actor2: Too many unique values to provide a significant contributor
+- actor3: Too many unique values to provide a significant contributor
+- actor4: Too many unique values to provide a significant contributor
+- actor5: Too many unique values to provide a significant contributor
+- imdb_url: Unrelated to rating
+- rt_url: Unrelated to rating
+
+Below are variables ommitted as a result of EDA
+
+- critics_score: Collinear with "audience_score" and is being removed to make the estimates more reliable.   Note that "audience_score" is not being removed instead since it has a higher correlation with IMDB       rating as seen in the EDA section.
+- runtime: As seen in the EDA, there is a very small correlation between runtime and the IMDB    rating.    Also, the scatter plot between the variables does not clearly depict a linear          association.
+- num_votes: As seen in the EDA, there is no clear linear relation between this variable and     the IMDB   rating
+- genre: As shown in the EDA section, there are too many genres and it is unlikely that just     one        particular genre will contribute to a higher IMDB rating
+- thtr_rel_month: Unrelated to IMDB rating as shown in the EDA section
+- dvd_rel_month: Unrelated to IMDB rating as shown in the EDA section
+- mpaa_rating: Similar reason as "genre"
+- best_pic_nom: This variable is redundant with "best_pic_win" as seen in the EDA
+
+###Variables to be included in the model
+
+Response Variable
+
+- imdb_rating
+
+Explanatory Variables
+
+- audience_rating
+- critics_score
+- audience_rating
+- best_pic_win
+- best_actor_win
+- best_actress_win
+- best_dir_win
+- top200_box
+
+###Creating the multiple linear regression (MLR) model
+
+Below, we create the initial MLR model with the variables of interest. 
+
+```{r}
+movies_model <- lm(imdb_rating ~ critics_rating + audience_score + audience_rating + best_pic_win + best_actor_win + best_actress_win + best_dir_win + top200_box,data=movies)
+
+summary(movies_model)
+```
+
+A summary of the model is shown above with a R-squared value of 0.7808, adjusted R-squared value of 0.7778 and an overall p-value of less than 2.2e-16. 
+
+From these results, we can see that the MLR model as a whole is a significant predictor of the the IMDB rating as the p-value is less than 5%. 
+
+Also, the lesser value of the adj R-squared than simply the R-squared value is due to the model taking into consideration all the variables whereby providing a slightly more accurate estimate. 
+
+###Model selection
+
+In this project, we will use the Backwards Elimination Method (BEM) using p-values since we are interested in finding the most significant contributor to the IMDB rating. 
+
+Hence, first we start with the full model, as already shown above. 
+
+In BEM using p-values, we first pick the explanatory variable with the highest p-value and re-fit the model using the remaining variables. 
+
+- First iteration
+
+The first iteration of the model shows that the variable "top200_box" has a p-value of 0.9867 which is much larger than 0.05 and is the highest one in the summary shown above. 
+
+- Second iteration
+
+```{r}
+movies_model_2 <- lm(imdb_rating ~ critics_rating + audience_score + audience_rating + best_pic_win + best_actor_win + best_actress_win + best_dir_win,data=movies)
+summary(movies_model_2)
+```
+
+In the second iteration, the "best_pic_win" variable has the highest p-value. Therefore, we remove this variable next. 
+
+- Third iteration
+
+```{r}
+movies_model_3 <- lm(imdb_rating ~ critics_rating + audience_score + audience_rating + best_actor_win + best_actress_win + best_dir_win,data=movies)
+summary(movies_model_3)
+```
+
+The summary for the third iteration above shows one of the levels of "critics_ratings" as being the least significant p-value. Although, since the "Rotten" level has a significant p-value, we keep the entire variable in the model. 
+
+We remove the next least significant variable which is "best_dir_win". 
+
+- Fourth iteration
+
+```{r}
+movies_model_4 <- lm(imdb_rating ~ critics_rating + audience_score + audience_rating + best_actor_win + best_actress_win,data=movies)
+summary(movies_model_4)
+```
+
+The next variable to be removed is "best_actor_win" which has a p-value of 0.072. 
+
+```{r}
+movies_model_5 <- lm(imdb_rating ~ critics_rating + audience_score + audience_rating + best_actress_win,data=movies)
+summary(movies_model_5)
+```
+
+The model above should be the final model consisting of the following explanatory variables:
+
+- critics_rating
+- audience_rating
+- audience_score
+- best_actress_win
+
+Since the critics rating variable still has a level that shows an insignificant p-value, we can check the model using ANOVA to analyze the variable as a whole.
+
+```{r}
+anova(movies_model_5)
+```
+
+The ANOVA table above shows that all the variables remaining in the final linear model are significant as the p-values, with respect to the F-statistic, are less than 0.05. 
+
+###Model Diagnostics
+
+1. Linear association between numerical explanatory variables and response variable "critics_rating"
+
+We have one numerical variable in our model - "audience_score". The model can be tested creating a scatter plot between this variable and the residuals. 
+
+```{r}
+ggplot(data=movies_model_5,aes(x=audience_score,y=.resid)) + geom_jitter() + geom_hline(yintercept = 0)
+```
+
+In the first plot above, the association between "audience_rating" and the residuals seems to be fairly linear and moderate. 
+
+Note that the variability in residual values seem to be higher at the lower scores. Although, the scatter seems to be randomly distributed about the 0 y-intercept. 
+
+2. Nearly normal residuals
+
+In order to check for normality, we create a histogram of residuals as shown below. 
+
+```{r}
+ggplot(data=movies_model_5,aes(x=.resid)) + geom_histogram(bins=30)
+```
+
+As seen from the histogram above, the residuals have a unimodal shape and are normally distributed around a mean of 0, even though the distribution is slightly left skewed. 
+
+Below is a normal probablity plot of the residuals. The left skewness of the distribution can be seen at the lower end of the plot where the tail seems to drop off from the guided line. 
+
+```{r}
+qqnorm(movies_model_5$residuals)
+qqline(movies_model_5$residuals)
+```
+
+3. Constant variability of the residuals
+
+```{r}
+ggplot(data=movies_model_5,aes(x=.fitted,y=.resid))+geom_jitter() + geom_hline(yintercept = 0)
+ggplot(data=movies_model_5,aes(x=.fitted,y=abs(.resid)))+geom_jitter()
+```
+
+The first plot above shows the relation between the fitted values of the model and the residuals of the model. 
+
+From the residual plot, it can be seen that the data does not show constant variability throughout as the variability is higher at lower fitted values as compared higher values. 
+
+The second plot above shows the absolute values of the residuals against the fitted values to observe any unusual data points. The points that are higher than 1 on the y axis could be considered unusual or outliers, but are still crucial to the diagnostics of the model. 
+
+4. Independent residuals
+
+Since the movies in this dataset were selected randomly (random sampling), we can assume that the residuals are independent as well as the residuals will also be independent of one another.
+
+
+###Interpreting the model coefficients
+
+Coefficients:
+                        Estimate Std. Error t value Pr(>|t|)    
+(Intercept)             3.798919   0.124290  30.565  < 2e-16 ***
+critics_ratingFresh    -0.065649   0.058106  -1.130   0.2590    
+critics_ratingRotten   -0.398931   0.064938  -6.143 1.41e-09 ***
+audience_score          0.050491   0.002122  23.798  < 2e-16 ***
+audience_ratingUpright -0.454348   0.080966  -5.612 2.98e-08 ***
+best_actress_winyes     0.154321   0.064321   2.399   0.0167 *  
+
+1. Intercept: The intercept is 3.798919 when all of the other explanatory variables are held constant (go to 0)
+
+2. critics_rating: All else held constant, a "Fresh" critics rating decreases the IMDB rating by -0.065649 points. All else held constant, a "Rotten" rating increases the IMDB rating by -0.398931 points. 
+
+3. audience_score: All else held constant, every increase in "critics_score" increases IMDB rating by 0.050491.  
+
+4. audience_rating: All else held constant, an "Upright" audience rating decreases the IMDB rating by -0.454348. 
+
+5. best_actress_win: All else held constant, every increase in best_actress_win increases IMDB rating by 0.154321. 
+
+* * *
+
+## Part 5: Prediction
+
+In order to put the linear model into practice, we test it on the movie "Dr. Strange" which was released in November of 2016. 
+
+We create a new data frame containing the observations for the model variables corresponding to the movie and make the prediction using the fitted model as shown below. 
+
+```{r}
+dr_strange <- data.frame(critics_rating="Certified Fresh",audience_score=86,audience_rating="Upright",best_actress_win="no")
+
+predict(movies_model_5,dr_strange)
+```
+
+After running the prediction function using the real movie values, we get a predicted IMDB score of 7.686768 for Dr. Strange. The actual IMDB rating is 7.5. Hence, the prediction is not too far off. 
+
+```{r}
+predict(movies_model_5,dr_strange,interval = "prediction",level=0.95)
+```
+
+Using the data for "Dr. Strange", we get a prediction interval of 6.676916 to 8.69662.
+
+Hence, the model predicts, with 95% confidence, that a movie with "Certified Fresh" critics_rating, 86 audience_score, "Upright" audience_rating an no best actress win is expected to have an IMDB rating between 6.676916 and 8.69662. This range of values represents the uncertainty of prediction in the model. 
+
+
+###References for Dr. Strange prediction data
+
+Rotten Tomatoes: https://www.rottentomatoes.com/m/doctor_strange_2016/
+
+IMDB: http://www.imdb.com/title/tt1211837/
+
+* * *
+
+## Part 6: Conclusion
+
+###Model diagnostics
+
+Following the backward elimination method using the p-value, the final model consisted of 4 explanatory variables. 
+
+The adjusted R-squared of the model came out to be 0.7771 which is a fairly high value. This tells us that 77.71% of the variability in the IMDB ratings can be estimated by the model. 
+
+The numerical explanatory variables are linearly and positively associated with the residuals of the linear model. 
+
+The residuals of the model have a unmidal and normal distribution except for a slight left-skewness which can also be observed in the normal probability plot. 
+
+Finally, the constant variability condition is also not met since the residuals versus fitted values plot seems to exhibit a fan-shaped scatter plot. 
+
+The residuals are independent of one another since the initial data was randomly selected. 
+
+One reason the model diagnostics conditions were not met could be because we optimized the model for finding the most significant contributors using p-values as opposed to optimizing for the adjusted R-squared. 
+
+Another reason could have been excluding certain other variables to the model which could have provided better model diagnostics. 
+
+###Most significant predictors
+
+According to the linear model, "audience_score" is the most significant predictor of the IMDB rating for a particular movie with p value of < 2e-16. 
+
+Hence, this is the most crucial variable in the model in making an accurate prediction of an IMDB movie rating. This is not surprising since a particular movie is likely to garner the same reputation on any movie platform. 
+
+
+###Prediction
+
+The movie from 2016 that was chosen for testing the model was "Dr. Strange". Including the values for the movie in the model yielded a fairly accurate prediction of the actual IMDB rating which fell within the prediction interval and was close to the single prediction value as well. 
+
+###Future work
+
+It would be useful and interesting to optimize the model for the highest predictive power using the R-squared method. This could improve the model diagnostics results as mentioned above. 
+
+This could also provide a higher adjusted R-squared and as a result, an even better prediction. 
+Other things to try would be to use forward stepping instead of backward elimination during the model selection process to see if that makes any difference to the characteristics of the model. 
+
+Also, it will be interesting to see how the prediction works if we picked a movie that does not have favourable reviews on Rotten Tomatoes, as we have seen that the residuals versus fitted scatter plot has a higher variability for lower fitted values.
