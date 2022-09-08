@@ -15,11 +15,13 @@
 
 import pandas as pd
 import numpy as np
+import warnings
+warnings.filterwarnings("ignore")
 
 spam_data = pd.read_csv('spam.csv')
 
 spam_data['target'] = np.where(spam_data['target']=='spam',1,0)
-spam_data.head(10)
+print (spam_data.head(10))
 
 
 # In[2]:
@@ -48,8 +50,9 @@ def answer_one():
 
 # In[6]:
 
-answer_one()
-
+one = answer_one()
+print (one)
+print ()
 
 # ### Question 2
 # 
@@ -78,8 +81,9 @@ def answer_two():
 
 # In[10]:
 
-answer_two()
-
+two = answer_two()
+print (two)
+print ()
 
 # ### Question 3
 # 
@@ -107,8 +111,9 @@ def answer_three():
 
 # In[31]:
 
-answer_three()
-
+three = answer_three()
+print (three)
+print ()
 
 # ### Question 4
 # 
@@ -151,8 +156,9 @@ def answer_four():
 
 # In[4]:
 
-answer_four()
-
+four = answer_four()
+print (four)
+print ()
 
 # ### Question 5
 # 
@@ -177,8 +183,9 @@ def answer_five():
 
 # In[85]:
 
-answer_five()
-
+five = answer_five()
+print (five)
+print ()
 
 # ### Question 6
 # 
@@ -198,8 +205,9 @@ def answer_six():
 
 # In[ ]:
 
-answer_six()
-
+six = answer_six()
+print (six)
+print ()
 
 # <br>
 # <br>
@@ -244,8 +252,9 @@ def answer_seven():
 
 # In[12]:
 
-answer_seven()
-
+seven = answer_seven()
+print (seven)
+print ()
 
 # ### Question 8
 # 
@@ -277,8 +286,9 @@ def answer_eight():
 
 # In[15]:
 
-answer_eight()
-
+eight = answer_eight()
+print (eight)
+print ()
 
 # ### Question 9
 # 
@@ -318,8 +328,9 @@ def answer_nine():
 
 # In[81]:
 
-answer_nine()
-
+nine = answer_nine()
+print (nine)
+print ()
 
 # ### Question 10
 # 
@@ -345,8 +356,9 @@ def answer_ten():
 
 # In[34]:
 
-answer_ten()
-
+ten = answer_ten()
+print (ten)
+print ()
 
 # ### Question 11
 # 
@@ -412,8 +424,9 @@ def answer_eleven():
 
 # In[30]:
 
-answer_eleven()
-
+eleven = answer_eleven()
+print (eleven)
+print ()
 
 # In[ ]:
 
